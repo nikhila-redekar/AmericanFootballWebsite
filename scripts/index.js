@@ -1,4 +1,5 @@
 "use strict";
+
 let teams = [
     { teamcode:"DAL", 
       name:"Dallas Cowboys", 
@@ -18,18 +19,28 @@ let teams = [
     }
   ];
   
-  window.onload = function() {
-      initializeFootballSelect();
-  };
+window.onload = function() {
+    initializeFootballSelect();
+    document.getElementById("showTeamInfo").addEventListener("click", showSelectedTeam);
+};
   
-  function initializeFootballSelect() {
-      let selectElement = document.getElementById("footballTeams");
+function initializeFootballSelect() {
+    let selectElement = document.getElementById("footballTeams");
   
-      // Loop through the array and add options to the select element
-      teams.forEach(team => {
-          let option = document.createElement("option");
-          option.text = team.name;
-          option.value = team.teamcode;
-          selectElement.appendChild(option);
-      });
-  }
+    // Loop through the array and add options to the select element
+    teams.forEach(team => {
+        let option = document.createElement("option");
+        option.text = team.name;
+        option.value = team.teamcode;
+        selectElement.appendChild(option);
+    });
+}
+
+function showSelectedTeam() {
+    let selectElement = document.getElementById("footballTeams");
+    let selectedTeamCode = selectElement.value;
+    let selectedTeam = teams.find(team => team.teamcode === selectedTeamCode);
+
+    let teamInfoParagraph = document.getElementById("teamInfo");
+    teamInfoParagraph.textContent = `You selected the ${selectedTeam.name} (${selectedTeam.teamcode}) who play in ${selectedTeam.locatedIn}`;
+}
