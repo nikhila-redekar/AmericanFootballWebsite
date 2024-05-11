@@ -1,5 +1,4 @@
 "use strict";
-
 let teams = [
     { teamcode:"DAL", 
       name:"Dallas Cowboys", 
